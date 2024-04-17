@@ -16,20 +16,20 @@
   <select id="getUserById" parameterType="java.lang.Long" resultMap="UserResultMap">
     select
     <include refid="columns" />
-    from user
+    from user1
     where id = #{id}
   </select>
   
   <select id="allUsers" resultMap="UserResultMap">
      select
      <include refid="columns" />
-     from user
+     from user1
   </select>
   
   <select id="listByCondition" parameterType="com.jarvis.cache.demo.condition.UserCondition" resultMap="UserResultMap">
     select
     <include refid="columns" />
-    from user
+    from user1
     <where>
       <if test="id != null"> and id = #{id}</if>
       <if test="name != null and name != ''"> and name like concat('%', #{name}, '%') </if>
@@ -41,12 +41,12 @@
   </select>
   
   <select id="getUserIdByName" parameterType="java.lang.String" resultType="java.lang.Long">
-    select id from user
+    select id from user1
     where name = #{name}
   </select>
   
   <select id="listIdsByCondition" parameterType="com.jarvis.cache.demo.condition.UserCondition" resultType="java.lang.Long">
-    select id  from user
+    select id  from user1
     <where>
       <if test="id != null"> and id = #{id}</if>
       <if test="name != null and name != ''"> and name like concat('%', #{name}, '%') </if>
@@ -60,7 +60,7 @@
   <select id="listByIds" resultMap="UserResultMap">
     select
     <include refid="columns" />
-    from user
+    from user1
     where
     <foreach collection="ids"  item="id" separator=" or ">
       id = #{id}
@@ -70,7 +70,7 @@
   <select id="listByIds2" resultMap="UserResultMap">
     select
     <include refid="columns" />
-    from user
+    from user1
     where
     <foreach collection="ids"  item="id" separator=" or ">
       id = #{id}
@@ -78,12 +78,12 @@
   </select>
 
   <insert id="addUser" parameterType="com.jarvis.cache.demo.entity.UserDO" useGeneratedKeys="true" keyProperty="id">
-    insert into user(name, password, status) 
+    insert into user1(name, password, status)
     values(#{name}, #{password}, 1)
   </insert>
   
   <update id="updateUser" parameterType="com.jarvis.cache.demo.entity.UserDO">
-    update user 
+    update user1
     <set>
       <if test="password != null and password != ''"> password = #{password}, </if>
       <if test="status != null"> status = #{status},</if>
@@ -92,11 +92,11 @@
   </update>
   
   <update id="deleteUserById" parameterType="java.lang.Long">
-    update user set status = 0 where id = #{id}
+    update user1 set status = 0 where id = #{id}
   </update>
 
   <update id="deleteUserByIds">
-    update user set status = 0 where
+    update user1 set status = 0 where
     <foreach collection="ids"  item="id" separator=" or ">
       id = #{id}
     </foreach>

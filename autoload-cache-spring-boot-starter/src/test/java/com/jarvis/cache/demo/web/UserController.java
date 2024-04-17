@@ -3,6 +3,7 @@ package com.jarvis.cache.demo.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class UserController {
     @GetMapping()
     public List<UserDO> list() {
         UserCondition condition = new UserCondition();
+        condition.setPageable(Pageable.ofSize(10));
         userDAO.listByCondition(condition);
         return userService.listByCondition(condition);
     }

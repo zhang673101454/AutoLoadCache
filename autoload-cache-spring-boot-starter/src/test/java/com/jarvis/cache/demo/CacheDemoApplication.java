@@ -35,7 +35,7 @@ public class CacheDemoApplication {
                 userMapper.allUsers();
                 
                 UserCondition condition = new UserCondition();
-                PageRequest page =new PageRequest(1, 10);
+                PageRequest page =PageRequest.of(1, 10);
                 condition.setPageable(page);
                 condition.setStatus(1);
                 userMapper.listByCondition(condition);

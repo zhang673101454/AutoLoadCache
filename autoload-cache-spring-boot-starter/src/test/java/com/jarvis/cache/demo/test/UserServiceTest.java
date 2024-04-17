@@ -33,7 +33,7 @@ public class UserServiceTest extends BaseServiceTest {
     @Autowired
     private UserMapper userMapper;
 
-    //@Test
+    @Test
     @Transactional
     @Rollback(true)
     public void test1Add() throws Exception {
@@ -49,7 +49,7 @@ public class UserServiceTest extends BaseServiceTest {
         userService.doLogin("tmp2", "aaaa3");
 
         UserCondition condition = new UserCondition();
-        Pageable pageable = new PageRequest(0, 10);
+        Pageable pageable = PageRequest.of(0, 10);
         condition.setPageable(pageable);
 
         List<UserDO> list = userService.listByCondition(condition);
@@ -84,7 +84,7 @@ public class UserServiceTest extends BaseServiceTest {
         userService.getUserById(1L);
 
         UserCondition condition = new UserCondition();
-        Pageable pageable = new PageRequest(0, 5);
+        Pageable pageable = PageRequest.of(0, 5);
         condition.setPageable(pageable);
 
         List<UserDO> list = userService.listByCondition(condition);
